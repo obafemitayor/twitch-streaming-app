@@ -7,6 +7,7 @@ use App\Interface\DatabaseProvider;
 use App\Implementation\MysqlDatabaseProvider;
 use App\Interface\StreamDataProviderAPI;
 use App\Implementation\TwitchStreamDataProviderAPI;
+use App\Implementation\MockStreamDataProviderAPI;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(DatabaseProvider::class, MysqlDatabaseProvider::class);
         $this->app->bind(StreamDataProviderAPI::class, TwitchStreamDataProviderAPI::class);
+        //$this->app->bind(StreamDataProviderAPI::class, MockStreamDataProviderAPI::class);
     }
 
     /**
