@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Interface\DatabaseProvider;
+use App\Implementation\MysqlDatabaseProvider;
+use App\Interface\StreamDataProviderAPI;
+use App\Implementation\TwitchStreamDataProviderAPI;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(DatabaseProvider::class, MysqlDatabaseProvider::class);
+        $this->app->bind(StreamDataProviderAPI::class, TwitchStreamDataProviderAPI::class);
     }
 
     /**
