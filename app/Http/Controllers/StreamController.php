@@ -115,7 +115,11 @@ class StreamController extends Controller
         $shared_tags = array();
         foreach ($result['shared_tags_btw_user_and_top_streams'] as $tag) {
             $tag_details = $this->tags_of_streams_followed_by_user[$tag];
-            array_push($shared_tags,$tag);
+            $shared_tag_details = array();
+            $shared_tag_details['tagId'] = $tag;
+            $shared_tag_details['localization_name'] = $tag_details['localization_names']['en-us'];
+            $shared_tag_details['localization_description'] = $tag_details['localization_descriptions']['en-us'];
+            array_push($shared_tags,$shared_tag_details);
         }
         $shared_tags_result['shared_tags_btw_user_and_top_streams'] = $shared_tags;
         $shared_tags_result['total_count'] = $result['total_count'];
